@@ -16,6 +16,15 @@
     <FILE id="E0yD8K" name="SynthVoice.cpp" compile="1" resource="0" file="Source/SynthVoice.cpp"/>
     <FILE id="N1yDXW" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
     <FILE id="elts5B" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
+    <GROUP id="{C3D2D71F-21DC-4FD7-F080-CBB516375644}" name="Data">
+      <FILE id="nCWMxr" name="adsrData.cpp" compile="1" resource="0" file="Data/adsrData.cpp"/>
+      <FILE id="MmYGoS" name="adsrData.h" compile="0" resource="0" file="Data/adsrData.h"/>
+    </GROUP>
+    <GROUP id="{6F7310DD-BD33-5FB1-E08B-8B1877A31D70}" name="UI">
+      <FILE id="L019bI" name="adsrComponent.cpp" compile="1" resource="0"
+            file="UI/adsrComponent.cpp"/>
+      <FILE id="YkOycD" name="adsrComponent.h" compile="0" resource="0" file="UI/adsrComponent.h"/>
+    </GROUP>
   </MAINGROUP>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
