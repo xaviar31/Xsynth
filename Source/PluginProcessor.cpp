@@ -157,7 +157,7 @@ void XsynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
             auto& release = *apvts.getRawParameterValue("RELEASE");
 
             // atomic
-            voice->updateADSR(attack.load(), decay.load(), sustain.load(), release.load());
+            voice->update(attack.load(), decay.load(), sustain.load(), release.load());
         }
     }
 
