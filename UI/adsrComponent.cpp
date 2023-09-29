@@ -12,10 +12,19 @@
 #include "adsrComponent.h"
 
 //==============================================================================
-adsrComponent::adsrComponent()
+adsrComponent::adsrComponent(juce::AudioProcessorValueTreeState& apvts)
 {
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
+    using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
+
+    attackAttachment = std::make_unique<SliderAttachment>(apvts, "ATTACK", attackSlider);
+    decayAttachment = std::make_unique<SliderAttachment>(apvts, "DECAY", decaySlider);
+    sustainAttachment = std::make_unique<SliderAttachment>(apvts, "SUSTAIN", sustainSlider);
+    releaseAttachment = std::make_unique<SliderAttachment>(apvts, "RELEASE", releaseSlider);
+
+    setSliderParams(attackSlider);
+    setSliderParams(decaySlider);
+    setSliderParams(sustainSlider);
+    setSliderParams(releaseSlider);
 
 }
 
@@ -25,27 +34,37 @@ adsrComponent::~adsrComponent()
 
 void adsrComponent::paint (juce::Graphics& g)
 {
-    /* This demo code just fills the component's background and
-       draws some placeholder text to get you started.
+    juce::Image image(juce::Image::ARGB, getWidth(), getHeight(), true);
+    juce::Graphics tg(image);
 
-       You should replace everything in this method with your own
-       drawing code..
-    */
+    juce::Colour blue(87, 202, 255);
+    juce::ColourGradient cg = juce::ColourGradient::horizontal(blue.darker(1.0), 0.0, blue.darker(20.0), getWidth());
+    tg.setGradientFill(cg);
+    tg.fillAll();
 
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
-
-    g.setColour (juce::Colours::grey);
-    g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
-
-    g.setColour (juce::Colours::white);
-    g.setFont (14.0f);
-    g.drawText ("adsrComponent", getLocalBounds(),
-                juce::Justification::centred, true);   // draw some placeholder text
+    g.drawImage(image, getLocalBounds().toFloat());
 }
 
 void adsrComponent::resized()
 {
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
+    const auto bounds = getLocalBounds().reduced(0);
+    const auto padding = 10;
+    const auto sliderWidth = bounds.getWidth() / 4 - padding;
+    const auto sliderHeight = bounds.getHeight();
+    const auto sliderX = 0;
+    const auto sliderY = 0;
 
+    attackSlider.setBounds(sliderX, sliderY, sliderWidth, sliderHeight);
+    decaySlider.setBounds(attackSlider.getRight() + padding, sliderY, sliderWidth, sliderHeight);
+    sustainSlider.setBounds(decaySlider.getRight() + padding, sliderY, sliderWidth, sliderHeight);
+    releaseSlider.setBounds(sustainSlider.getRight() + padding, sliderY, sliderWidth, sliderHeight);
+}
+
+void adsrComponent::setSliderParams(juce::Slider& slider)
+{
+    slider.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
+    slider.setColour(juce::Slider::rotarySliderFillColourId, juce::Colours::seagreen);
+    slider.setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colours::white);
+    slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxAbove, true, 50, 25);
+    addAndMakeVisible(slider);
 }

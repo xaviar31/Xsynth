@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "../UI/adsrComponent.h"
 
 //==============================================================================
 /**
@@ -25,25 +26,10 @@ public:
     void resized() override;
 
 private:
-    // sliders and combobox
-    juce::Slider attackSlider;
-    juce::Slider decaySlider;
-    juce::Slider sustainSlider;
-    juce::Slider releaseSlider;
     juce::ComboBox oscSelector;
-
-    XsynthAudioProcessor& audioProcessor;
-
-    using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
-
-    std::unique_ptr<SliderAttachment> attackAttachment;
-    std::unique_ptr<SliderAttachment> decayAttachment;
-    std::unique_ptr<SliderAttachment> sustainAttachment;
-    std::unique_ptr<SliderAttachment> releaseAttachment;
-
     std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> oscSelAttachment;
-
-    void XsynthAudioProcessorEditor::setSliderParams(juce::Slider& slider);
+    XsynthAudioProcessor& audioProcessor;
+    adsrComponent adsr;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (XsynthAudioProcessorEditor)
 };
