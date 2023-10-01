@@ -30,7 +30,15 @@ oscComponent::~oscComponent()
 
 void oscComponent::paint (juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::black);
+    juce::Image image(juce::Image::ARGB, getWidth(), getHeight(), true);
+    juce::Graphics tg(image);
+
+    juce::Colour green(46, 138, 87);
+    juce::ColourGradient cg = juce::ColourGradient::horizontal(green.darker(0.05), 0.0, green.darker(2.5), getWidth());
+    tg.setGradientFill(cg);
+    tg.fillAll();
+
+    g.drawImage(image, getLocalBounds().toFloat());
 }
 
 void oscComponent::resized()
@@ -48,7 +56,7 @@ void oscComponent::setSliderWithLabel(juce::Slider& slider, juce::Label& label, 
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>& attachment)
 {
     slider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
-    slider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 25);
+    slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 50, 25);
     addAndMakeVisible(slider);
 
     attachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(apvts, paramID, slider);
