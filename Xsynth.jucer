@@ -19,6 +19,8 @@
     <GROUP id="{C3D2D71F-21DC-4FD7-F080-CBB516375644}" name="Data">
       <FILE id="nCWMxr" name="adsrData.cpp" compile="1" resource="0" file="Data/adsrData.cpp"/>
       <FILE id="MmYGoS" name="adsrData.h" compile="0" resource="0" file="Data/adsrData.h"/>
+      <FILE id="AUT4fQ" name="OscData.cpp" compile="1" resource="0" file="Data/OscData.cpp"/>
+      <FILE id="lNJx3z" name="OscData.h" compile="0" resource="0" file="Data/OscData.h"/>
     </GROUP>
     <GROUP id="{6F7310DD-BD33-5FB1-E08B-8B1877A31D70}" name="UI">
       <FILE id="L019bI" name="adsrComponent.cpp" compile="1" resource="0"

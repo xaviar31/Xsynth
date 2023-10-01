@@ -156,8 +156,11 @@ void XsynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
             auto& sustain = *apvts.getRawParameterValue("SUSTAIN");
             auto& release = *apvts.getRawParameterValue("RELEASE");
 
+            auto& oscWaveChoice = *apvts.getRawParameterValue("OSC1WAVETYPE");
+
             // atomic
             voice->update(attack.load(), decay.load(), sustain.load(), release.load());
+            voice->getOscillator().setWaveType(oscWaveChoice);
         }
     }
 
@@ -215,6 +218,9 @@ juce::AudioProcessorValueTreeState::ParameterLayout XsynthAudioProcessor::create
     params.push_back(std::make_unique<juce::AudioParameterFloat>("DECAY", "Decay", 0.1f, 1.0f, 0.1f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("SUSTAIN", "Sustain", 0.1f, 1.0f, 1.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("RELEASE", "Release", 0.1f, 3.0f, 0.4f));
+
+    // audio parameter choice
+    params.push_back(std::make_unique<juce::AudioParameterChoice>("OSC1WAVETYPE", "Osc 1 Wave Type", juce::StringArray{ "Sine", "Saw", "Square" }, 0));
 
     return { params.begin(), params.end() };
 }
