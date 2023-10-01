@@ -162,7 +162,7 @@ void XsynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
 
             // atomic
             voice->getOscillator().setWaveType(oscWaveChoice);
-            voice->getOscillator().setFmParams(fmDepth, fmFreq);
+            voice->getOscillator().setFmParams(fmFreq, fmDepth);
             voice->update(attack.load(), decay.load(), sustain.load(), release.load());
         }
     }

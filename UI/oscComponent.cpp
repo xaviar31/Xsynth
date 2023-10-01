@@ -51,7 +51,7 @@ void oscComponent::setSliderWithLabel(juce::Slider& slider, juce::Label& label, 
     slider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 25);
     addAndMakeVisible(slider);
 
-    fmFreqAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(apvts, paramID, slider);
+    attachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(apvts, paramID, slider);
 
     fmFreqLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
     fmFreqLabel.setFont(15.0f);
