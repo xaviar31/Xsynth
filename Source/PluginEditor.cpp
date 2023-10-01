@@ -11,14 +11,11 @@
 
 //==============================================================================
 XsynthAudioProcessorEditor::XsynthAudioProcessorEditor (XsynthAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p), adsr(audioProcessor.apvts)
+    : AudioProcessorEditor (&p), audioProcessor (p), osc(audioProcessor.apvts, "OSC1WAVETYPE"), adsr(audioProcessor.apvts)
 {
     setSize (400, 400);
-
-    oscSelAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment>(audioProcessor.apvts, "OSC", oscSelector);
-
-    // makde adsr visible
     addAndMakeVisible(adsr);
+    addAndMakeVisible(osc);
 }
 
 XsynthAudioProcessorEditor::~XsynthAudioProcessorEditor()
@@ -33,7 +30,8 @@ void XsynthAudioProcessorEditor::paint (juce::Graphics& g)
 
 void XsynthAudioProcessorEditor::resized()
 {
-    //set adsr bounds
+    //set bounds
     adsr.setBounds(getLocalBounds());
+    osc.setBounds(10, 10, 100, 30);
 }
 

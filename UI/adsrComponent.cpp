@@ -47,12 +47,12 @@ void adsrComponent::paint (juce::Graphics& g)
 
 void adsrComponent::resized()
 {
-    const auto bounds = getLocalBounds().reduced(0);
+    const auto bounds = getLocalBounds();
     const auto padding = 10;
     const auto sliderWidth = bounds.getWidth() / 4 - padding;
-    const auto sliderHeight = bounds.getHeight();
+    const auto sliderHeight = bounds.getHeight() / 4 - padding;
     const auto sliderX = 0;
-    const auto sliderY = 0;
+    const auto sliderY = 300;
 
     attackSlider.setBounds(sliderX, sliderY, sliderWidth, sliderHeight);
     decaySlider.setBounds(attackSlider.getRight() + padding, sliderY, sliderWidth, sliderHeight);
@@ -65,6 +65,6 @@ void adsrComponent::setSliderParams(juce::Slider& slider)
     slider.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
     slider.setColour(juce::Slider::rotarySliderFillColourId, juce::Colours::seagreen);
     slider.setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colours::white);
-    slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxAbove, false, 50, 25);
+    slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 50, 25);
     addAndMakeVisible(slider);
 }

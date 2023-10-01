@@ -32,3 +32,18 @@ void OscData::setWaveType(const int waveChoice)
         break;
     }
 }
+
+void OscData::prepareToPlay(juce::dsp::ProcessSpec& spec)
+{
+    prepare(spec);
+}
+
+void OscData::getNextAudioBlock(juce::dsp::AudioBlock<float>& block)
+{
+    process(juce::dsp::ProcessContextReplacing<float>(block));
+}
+
+void OscData::setWaveFreq(const int midiNoteNumber)
+{
+    setFrequency(juce::MidiMessage::getMidiNoteInHertz(midiNoteNumber));
+}
