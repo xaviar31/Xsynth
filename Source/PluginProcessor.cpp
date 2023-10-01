@@ -214,20 +214,19 @@ juce::AudioProcessorValueTreeState::ParameterLayout XsynthAudioProcessor::create
     std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
 
     // OSC selection
-    params.push_back(std::make_unique<juce::AudioParameterChoice>("OSC", "Oscillator", juce::StringArray{ "Sine", "Saw", "Square" }, 0));
+    params.push_back(std::make_unique<juce::AudioParameterChoice>("OSC1WAVETYPE", "Osc 1 Wave Type", juce::StringArray{ "Sine", "Saw", "Square" }, 0));
 
     // Frequency Modulation
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("FMFREQ", "FM Frequency", juce::NormalisableRange<float> { 0.0f, 1000.0f, }, 5.0f)); //sine wave oscillating at rate of 5hz
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("FMDEPTH", "FM Depth", juce::NormalisableRange<float> { 0.0f, 1000.0f, }, 500.0f)); //sine wave: -500 to 500 hz
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FMFREQ", "FM Frequency",
+        juce::NormalisableRange<float> { 0.0f, 1000.0f, }, 5.0f)); //sine wave oscillating at rate of 5hz
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FMDEPTH", "FM Depth", juce::NormalisableRange<float>
+        { 0.0f, 1000.0f, }, 500.0f)); //sine wave: -500 to 500 hz
 
     // ADSR
     params.push_back(std::make_unique<juce::AudioParameterFloat>("ATTACK", "Attack", 0.1f, 1.0f, 0.1f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("DECAY", "Decay", 0.1f, 1.0f, 0.1f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("SUSTAIN", "Sustain", 0.1f, 1.0f, 1.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("RELEASE", "Release", 0.1f, 3.0f, 0.4f));
-
-    // audio parameter choice
-    params.push_back(std::make_unique<juce::AudioParameterChoice>("OSC1WAVETYPE", "Osc 1 Wave Type", juce::StringArray{ "Sine", "Saw", "Square" }, 0));
 
     return { params.begin(), params.end() };
 }

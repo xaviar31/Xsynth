@@ -10,6 +10,12 @@
 
 #include "OscData.h"
 
+void OscData::prepareToPlay(juce::dsp::ProcessSpec& spec)
+{
+    fmOsc.prepare(spec);
+    prepare(spec);
+}
+
 // switch between sine, saw, or square wave
 void OscData::setWaveType(const int waveChoice)
 {
@@ -33,12 +39,6 @@ void OscData::setWaveType(const int waveChoice)
     }
 }
 
-void OscData::prepareToPlay(juce::dsp::ProcessSpec& spec)
-{
-    fmOsc.prepare(spec);
-    prepare(spec);
-}
-
 void OscData::setWaveFreq(const int midiNoteNumber)
 {
     setFrequency(juce::MidiMessage::getMidiNoteInHertz(midiNoteNumber) + fmMod);
@@ -51,7 +51,7 @@ void OscData::getNextAudioBlock(juce::dsp::AudioBlock<float>& block)
     {
         for (int samples = 0; samples < block.getNumSamples(); ++samples)
         {
-            fmMod = fmOsc.processSample(block.getSample(channel, samples) * fmDepth);
+            fmMod = fmOsc.processSample (block.getSample (channel, samples)) * fmDepth;
         }
     }
     process(juce::dsp::ProcessContextReplacing<float>(block));
