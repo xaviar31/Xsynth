@@ -56,6 +56,8 @@ void oscComponent::setSliderWithLabel(juce::Slider& slider, juce::Label& label, 
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>& attachment)
 {
     slider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+    slider.setColour(juce::Slider::rotarySliderFillColourId, juce::Colours::turquoise);
+    slider.setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colours::white);
     slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 50, 25);
     addAndMakeVisible(slider);
 
