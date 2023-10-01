@@ -38,5 +38,12 @@ private:
     std::unique_ptr<SliderAttachment> sustainAttachment;
     std::unique_ptr<SliderAttachment> releaseAttachment;
 
+    void setLabelParams(juce::Label& label);
+
+    juce::Label attackLabel{ "Attack", "Attack" };
+    juce::Label decayLabel{ "Decay", "Decay" };
+    juce::Label sustainLabel{ "Sustain", "Sustain" };
+    juce::Label releaseLabel{ "Release", "Release" };
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (adsrComponent)
 };

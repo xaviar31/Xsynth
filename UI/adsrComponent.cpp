@@ -26,6 +26,11 @@ adsrComponent::adsrComponent(juce::AudioProcessorValueTreeState& apvts)
     setSliderParams(sustainSlider);
     setSliderParams(releaseSlider);
 
+    setLabelParams(attackLabel);
+    setLabelParams(decayLabel);
+    setLabelParams(sustainLabel);
+    setLabelParams(releaseLabel);
+
 }
 
 adsrComponent::~adsrComponent()
@@ -58,6 +63,11 @@ void adsrComponent::resized()
     decaySlider.setBounds(attackSlider.getRight() + padding, sliderY, sliderWidth, sliderHeight);
     sustainSlider.setBounds(decaySlider.getRight() + padding, sliderY, sliderWidth, sliderHeight);
     releaseSlider.setBounds(sustainSlider.getRight() + padding, sliderY, sliderWidth, sliderHeight);
+
+    attackLabel.setBounds(attackSlider.getX(), attackSlider.getY() - 10, attackSlider.getWidth(), 20);
+    decayLabel.setBounds(decaySlider.getX(), decaySlider.getY() - 10, decaySlider.getWidth(), 20);
+    sustainLabel.setBounds(sustainSlider.getX(), sustainSlider.getY() - 10, sustainSlider.getWidth(), 20);
+    releaseLabel.setBounds(releaseSlider.getX(), releaseSlider.getY() - 10, releaseSlider.getWidth(), 20);
 }
 
 void adsrComponent::setSliderParams(juce::Slider& slider)
@@ -67,4 +77,27 @@ void adsrComponent::setSliderParams(juce::Slider& slider)
     slider.setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colours::white);
     slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 50, 25);
     addAndMakeVisible(slider);
+}
+
+void adsrComponent::setLabelParams(juce::Label& label)
+{
+    attackLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
+    attackLabel.setFont(15.0f);
+    attackLabel.setJustificationType(juce::Justification::centred);
+    addAndMakeVisible(attackLabel);
+
+    decayLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
+    decayLabel.setFont(15.0f);
+    decayLabel.setJustificationType(juce::Justification::centred);
+    addAndMakeVisible(decayLabel);
+
+    sustainLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
+    sustainLabel.setFont(15.0f);
+    sustainLabel.setJustificationType(juce::Justification::centred);
+    addAndMakeVisible(sustainLabel);
+
+    releaseLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
+    releaseLabel.setFont(15.0f);
+    releaseLabel.setJustificationType(juce::Justification::centred);
+    addAndMakeVisible(releaseLabel);
 }
