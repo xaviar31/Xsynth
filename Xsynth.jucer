@@ -26,6 +26,9 @@
       <FILE id="L019bI" name="adsrComponent.cpp" compile="1" resource="0"
             file="UI/adsrComponent.cpp"/>
       <FILE id="YkOycD" name="adsrComponent.h" compile="0" resource="0" file="UI/adsrComponent.h"/>
+      <FILE id="UrLyYu" name="oscComponent.cpp" compile="1" resource="0"
+            file="UI/oscComponent.cpp"/>
+      <FILE id="gJCzK2" name="oscComponent.h" compile="0" resource="0" file="UI/oscComponent.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>
