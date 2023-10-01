@@ -11,7 +11,7 @@
 
 //==============================================================================
 XsynthAudioProcessorEditor::XsynthAudioProcessorEditor (XsynthAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p), osc(audioProcessor.apvts, "OSC1WAVETYPE"), adsr(audioProcessor.apvts)
+    : AudioProcessorEditor (&p), audioProcessor (p), osc(audioProcessor.apvts, "OSC1WAVETYPE", "FMFREQ", "FMDEPTH"), adsr(audioProcessor.apvts)
 {
     setSize (400, 400);
     addAndMakeVisible(adsr);
@@ -32,6 +32,6 @@ void XsynthAudioProcessorEditor::resized()
 {
     //set bounds
     adsr.setBounds(getLocalBounds());
-    osc.setBounds(10, 10, 100, 30);
+    osc.setBounds(10, 10, 90, 250);
 }
 

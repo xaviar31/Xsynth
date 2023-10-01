@@ -220,9 +220,9 @@ juce::AudioProcessorValueTreeState::ParameterLayout XsynthAudioProcessor::create
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FMFREQ", "FM Frequency",
         juce::NormalisableRange<float> { 0.0f, 1000.0f, }, 5.0f)); //sine wave oscillating at rate of 5hz
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FMDEPTH", "FM Depth", juce::NormalisableRange<float>
-        { 0.0f, 1000.0f, }, 500.0f)); //sine wave: -500 to 500 hz
+    { 0.0f, 1000.0f, }, 500.0f)); //sine wave: -500 to 500 hz
 
-    // ADSR
+// ADSR
     params.push_back(std::make_unique<juce::AudioParameterFloat>("ATTACK", "Attack", 0.1f, 1.0f, 0.1f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("DECAY", "Decay", 0.1f, 1.0f, 0.1f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("SUSTAIN", "Sustain", 0.1f, 1.0f, 1.0f));

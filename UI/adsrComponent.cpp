@@ -62,7 +62,7 @@ void adsrComponent::resized()
 
 void adsrComponent::setSliderParams(juce::Slider& slider)
 {
-    slider.setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
+    slider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     slider.setColour(juce::Slider::rotarySliderFillColourId, juce::Colours::seagreen);
     slider.setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colours::white);
     slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 50, 25);
